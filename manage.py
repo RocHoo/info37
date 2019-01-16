@@ -1,30 +1,24 @@
-from flask import Flask,session
+from flask import session
 
-from flask_session import Session
-
-from config import config_dict
-
-from flask_sqlalchemy import SQLAlchemy
 
 from flask_script import Manager
 
 from flask_migrate import Migrate,MigrateCommand
 
-app=Flask(__name__)
+from info import create_app,db
 
-app.config.from_object(config_dict['development'])
+app=create_app('development')
 
 
 
-Session(app)
 
-db=SQLAlchemy(app)
 
 manage=Manager(app)
 
 Migrate(app,db)
 
 manage.add_command('db',MigrateCommand)
+
 
 @app.route('/')
 def index():

@@ -20,11 +20,7 @@ Migrate(app,db)
 manage.add_command('db',MigrateCommand)
 
 
-@app.route('/')
-def index():
-    session['itcast']='2019'
-    return 'hello world2018'
-
 
 if __name__ == '__main__':
+    print(app.url_map)
     manage.run()
